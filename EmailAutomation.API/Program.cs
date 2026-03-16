@@ -7,15 +7,15 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowReact",
-        policy => policy.WithOrigins("http://localhost:5173")
+    options.AddPolicy("AllowAll",
+        policy => policy.AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader());
 });
 
 var app = builder.Build();
 
-app.UseCors("AllowReact");
+app.UseCors("AllowAll");
 app.UseAuthorization();
 app.MapControllers();
 
