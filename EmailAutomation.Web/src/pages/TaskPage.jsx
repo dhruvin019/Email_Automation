@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import toast from 'react-hot-toast'
-import axios from 'axios'
+import api from '../api/api'
 import './TaskPage.css'
 import { buildReportHtml } from '../services/reportService'
 
@@ -79,10 +79,10 @@ export default function TaskPage() {
     }
 
     setLoading(true)
-    console.log('[Frontend] Sending report to /api/task/send-report')
+    console.log(`[Frontend] Sending report to ${api.defaults.baseURL}/api/task/send-report`)
     console.log('[Frontend] Payload:', { ...credentials, tasks: validTasks })
     try {
-      const response = await axios.post('/api/task/send-report', {
+      const response = await api.post('/api/task/send-report', {
         ...credentials,
         tasks: validTasks
       })

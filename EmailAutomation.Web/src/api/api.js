@@ -1,24 +1,11 @@
 import axios from 'axios'
 
+// Direct connection to the deployed Render backend
+const API_BASE_URL = 'https://email-automation-2-ruj3.onrender.com'
+
 const api = axios.create({
-    baseURL: '/api',
+    baseURL: API_BASE_URL,
     headers: { 'Content-Type': 'application/json' },
 })
 
-/**
- * Send a task email.
- * Credentials are passed directly from browser localStorage.
- */
-export const sendTaskEmail = ({ taskNo, taskDetail }) => {
-    const senderEmail = localStorage.getItem('senderEmail') || ''
-    const smtpPassword = localStorage.getItem('smtpPassword') || ''
-    const receiverEmail = localStorage.getItem('receiverEmail') || ''
-
-    return api.post('/task/send', {
-        taskNo,
-        taskDetail,
-        senderEmail,
-        smtpPassword,
-        receiverEmail,
-    })
-}
+export default api
