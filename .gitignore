@@ -1,0 +1,40 @@
+# .gitignore for Email Automation (React + .NET Hybrid)
+
+# .NET
+bin/
+obj/
+[Ee]bug/
+[Rr]elease/
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+.vscode/
+
+# Node / React
+node_modules/
+dist/
+dist-ssr/
+*.local
+.eslintcache
+.stylelintcache
+
+# Logs and sensitive data
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build results
+EmailAutomation.Web/dist/
+EmailAutomation.API/bin/
+EmailAutomation.API/obj/
+
+# Misc
+.DS_Store
+Thumbs.db

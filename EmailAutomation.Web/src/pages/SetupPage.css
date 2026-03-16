@@ -1,0 +1,161 @@
+.setup-page {
+  padding: 2rem 0;
+}
+
+.setup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .setup-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.setup-info h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.setup-info .description {
+  font-size: 1.1rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+  max-width: 500px;
+  margin-bottom: 3rem;
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.feature-item {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.feat-icon {
+  font-size: 1.5rem;
+  padding: 1rem;
+  background: white;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.feature-item h4 {
+  margin-bottom: 4px;
+}
+
+.feature-item p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Vault Card */
+.vault-card {
+  padding: 3rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  border: 1px solid var(--surface-border);
+  background: white !important;
+}
+
+.vault-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vault-line {
+  width: 40px;
+  height: 4px;
+  background: var(--primary);
+  border-radius: var(--radius-full);
+}
+
+.vault-header h3 {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.form-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group-premium {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-group-premium label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.input-block {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 16px;
+  color: var(--text-muted);
+}
+
+.input-block input, 
+.form-group-premium textarea {
+  width: 100%;
+  background: #f8fafc;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  color: var(--text-main);
+  font-size: 1rem;
+  transition: var(--transition-smooth);
+}
+
+.input-block input {
+  padding-left: 48px;
+}
+
+.input-block input:focus, 
+.form-group-premium textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 0 0 4px var(--primary-glow);
+}
+
+.hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.vault-actions {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+}
+
+.full-width {
+  width: 100%;
+}
