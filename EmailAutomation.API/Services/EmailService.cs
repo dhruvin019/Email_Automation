@@ -55,7 +55,8 @@ public class EmailService : IEmailService
 
         sb.Append("</tbody></table></div>");
 
-        email.Body = new TextPart(TextFormat.Html) { Text = sb.ToString() };
+        string finalHtml = string.IsNullOrEmpty(request.HtmlBody) ? sb.ToString() : request.HtmlBody;
+        email.Body = new TextPart(TextFormat.Html) { Text = finalHtml };
 
         using var smtp = new SmtpClient();
         await smtp.ConnectAsync("smtp.gmail.com", 587, SecureSocketOptions.StartTls);

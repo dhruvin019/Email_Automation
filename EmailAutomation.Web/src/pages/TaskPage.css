@@ -198,6 +198,12 @@
   padding: 3rem;
   max-height: 60vh;
   overflow-y: auto;
+  min-height: 200px;
+}
+
+.html-viewer:focus {
+  outline: 2px solid var(--primary-glow);
+  background: white;
 }
 
 .dispatch-controls {

@@ -17,4 +17,5 @@ public class SendReportRequest
     public string SmtpPassword { get; set; } = string.Empty;
     public List<string> ReceiverEmails { get; set; } = new();
     public List<TaskEntry> Tasks { get; set; } = new();
+    public string HtmlBody { get; set; } = string.Empty;
 }

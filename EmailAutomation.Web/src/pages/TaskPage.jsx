@@ -9,6 +9,7 @@ export default function TaskPage() {
   const [step, setStep] = useState(1) // 1: Builder, 2: Preview
   const [tasks, setTasks] = useState([])
   const [loading, setLoading] = useState(false)
+  const [editedHtml, setEditedHtml] = useState('')
 
   // Load credentials from cookies
   const credentials = {
@@ -55,9 +56,17 @@ export default function TaskPage() {
     setTasks(newTasks)
   }
 
+  const handleStepChange = (newStep) => {
+    if (newStep === 2) {
+      const initialHtml = buildReportHtml(tasks.filter(t => t.taskNo), new Date().toLocaleDateString('en-GB'))
+      setEditedHtml(initialHtml)
+    }
+    setStep(newStep)
+  }
+
   const handleCopyToClipboard = () => {
-    const htmlBody = buildReportHtml(tasks.filter(t => t.taskNo), new Date().toLocaleDateString('en-GB'))
-    navigator.clipboard.writeText(htmlBody).then(() => {
+    const htmlToCopy = editedHtml || buildReportHtml(tasks.filter(t => t.taskNo), new Date().toLocaleDateString('en-GB'))
+    navigator.clipboard.writeText(htmlToCopy).then(() => {
       toast.success('HTML Report Copied to Clipboard!', {
         style: { background: 'white', color: '#0284c7', border: '1px solid #e0f2fe' }
       })
@@ -84,7 +93,8 @@ export default function TaskPage() {
     try {
       const response = await api.post('/api/task/send-report', {
         ...credentials,
-        tasks: validTasks
+        tasks: validTasks,
+        htmlBody: editedHtml
       })
       console.log('[Frontend] Dispatch SUCCESS:', response.data)
       toast.success('Enterprise Report Dispatched!')
@@ -175,15 +185,15 @@ export default function TaskPage() {
               ))}
            </div>
            
-           <div className="builder-actions">
-              <button 
-                className="premium-btn primary large glow" 
-                onClick={() => setStep(2)}
-                disabled={tasks.filter(t => t.taskNo).length === 0}
-              >
-                COMPILE FINAL DRAFT <span>→</span>
-              </button>
-           </div>
+            <div className="builder-actions">
+               <button 
+                 className="premium-btn primary large glow" 
+                 onClick={() => handleStepChange(2)}
+                 disabled={tasks.filter(t => t.taskNo).length === 0}
+               >
+                 COMPILE FINAL DRAFT <span>→</span>
+               </button>
+            </div>
         </div>
       )}
 
@@ -196,14 +206,18 @@ export default function TaskPage() {
                  <span className="dot green"></span>
                  <span className="window-title">report_draft_v1.html</span>
               </div>
-              
-              <div className="html-viewer" dangerouslySetInnerHTML={{ __html: buildReportHtml(tasks.filter(t => t.taskNo), new Date().toLocaleDateString('en-GB')) }}></div>
+                            <div className="html-viewer" 
+                    contentEditable 
+                    suppressContentEditableWarning={true}
+                    onBlur={(e) => setEditedHtml(e.currentTarget.innerHTML)}
+                    dangerouslySetInnerHTML={{ __html: editedHtml }}
+               />
            </div>
 
            <div className="dispatch-controls">
-              <button className="premium-btn secondary" onClick={() => setStep(1)}>
-                ← BACK TO BUILDER
-              </button>
+              <button className="premium-btn secondary" onClick={() => handleStepChange(1)}>
+                 ← BACK TO BUILDER
+               </button>
               <button className="premium-btn secondary" onClick={handleCopyToClipboard}>
                 COPY HTML TO CLIPBOARD
               </button>
