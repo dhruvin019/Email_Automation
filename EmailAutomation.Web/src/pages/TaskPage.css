@@ -139,6 +139,20 @@
   font-size: 0.9rem;
 }
 
+.checkbox-field {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 12px !important;
+  padding-bottom: 12px;
+}
+
+.checkbox-field input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--primary);
+}
+
 .duration-pill {
   padding: 8px 16px;
   background: rgba(56, 189, 248, 0.1);

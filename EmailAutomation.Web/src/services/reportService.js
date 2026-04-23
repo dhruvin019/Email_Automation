@@ -47,14 +47,8 @@ export const buildReportHtml = (tasks) => {
         </thead>
         <tbody>
           ${rows}
-          <tr style="background: #f8fafc;">
-            <td colspan="4" style="border: 1px solid #e2e8f0; padding: 12px; text-align: right; font-weight: bold; color: #1e293b;">Total Hours:</td>
-            <td style="border: 1px solid #e2e8f0; padding: 12px; text-align: center; font-weight: 800; color: #0ea5e9;">${totalDisplay}</td>
-          </tr>
         </tbody>
       </table>
-      
-      <p style="margin-top: 24px;">Thanks & Regards,<br/><b>Dhruvin Virpara</b></p>
     </div>
   `;
 };

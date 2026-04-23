@@ -142,14 +142,8 @@ public class EmailService : IEmailService
         var totalM = (int)((totalHoursSum - totalH) * 60);
         string displayTotal = $"{totalH:D2}:{totalM:D2}";
 
-        sb.Append("<tr style=\"background: #f8fafc;\">");
-        sb.Append("<td colspan=\"4\" style=\"border: 1px solid #e2e8f0; padding: 12px; text-align: right; font-weight: bold;\">Total Hours:</td>");
-        sb.Append($"<td style=\"border: 1px solid #e2e8f0; padding: 12px; text-align: center; font-weight: bold;\">{displayTotal}</td>");
-        sb.Append("</tr>");
-
         sb.Append("</tbody></table>");
         
-        sb.Append("<p>Thanks & Regards,<br/><b>Dhruvin Virpara</b></p>");
         sb.Append("</div>");
         return sb.ToString();
     }
