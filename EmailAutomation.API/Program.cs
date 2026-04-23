@@ -15,10 +15,10 @@ builder.Services.AddCors(options =>
     {
         policy
             .WithOrigins(
-            .WithOrigins(
-                "http://localhost:5173",
-                "https://email-automation-livid.vercel.app"
-            )
+                "http://localhost:5173",      // Vite dev server
+                "http://localhost:3000",      // Alternative dev port
+                "https://email-automation-livid.vercel.app" // Production frontend
+
             )
             .AllowAnyMethod()
             .AllowAnyHeader();
@@ -31,6 +31,9 @@ builder.Logging.AddConsole();
 
 var app = builder.Build();
 
+
+app.UseCors("AllowAll");
+
 // Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
@@ -38,9 +41,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseRouting();
-app.UseCors("AllowFrontend");
 app.UseHttpsRedirection();
+app.UseCors("AllowFrontend");
 app.UseAuthorization();
 app.MapControllers();
 

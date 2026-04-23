@@ -9,4 +9,5 @@ public class TaskItem
     public string StartTime { get; set; } = string.Empty;
     public string EndTime { get; set; } = string.Empty;
     public string Hours { get; set; } = "00:00";
+    public bool IncludeBreak { get; set; } = false;
 }

@@ -30,7 +30,8 @@ export default function TaskPage() {
       status: 'Complete',
       startTime: '',
       endTime: '',
-      hours: '00:00'
+      hours: '00:00',
+      includeBreak: false
     }])
   }
 
@@ -58,14 +59,14 @@ export default function TaskPage() {
 
   const handleStepChange = (newStep) => {
     if (newStep === 2) {
-      const initialHtml = buildReportHtml(tasks.filter(t => t.taskNo), new Date().toLocaleDateString('en-GB'))
+      const initialHtml = buildReportHtml(tasks.filter(t => t.taskNo))
       setEditedHtml(initialHtml)
     }
     setStep(newStep)
   }
 
   const handleCopyToClipboard = () => {
-    const htmlToCopy = editedHtml || buildReportHtml(tasks.filter(t => t.taskNo), new Date().toLocaleDateString('en-GB'))
+    const htmlToCopy = editedHtml || buildReportHtml(tasks.filter(t => t.taskNo))
     navigator.clipboard.writeText(htmlToCopy).then(() => {
       toast.success('HTML Report Copied to Clipboard!', {
         style: { background: 'white', color: '#0284c7', border: '1px solid #e0f2fe' }
@@ -175,6 +176,14 @@ export default function TaskPage() {
                           <div className="field mini">
                             <label>End</label>
                             <input type="time" value={task.endTime} onChange={(e) => handleTaskChange(index, 'endTime', e.target.value)} />
+                          </div>
+                          <div className="field mini checkbox-field">
+                            <label>Break</label>
+                            <input 
+                              type="checkbox" 
+                              checked={task.includeBreak} 
+                              onChange={(e) => handleTaskChange(index, 'includeBreak', e.target.checked)} 
+                            />
                           </div>
                           <div className="duration-pill mono">{task.hours}</div>
                         </div>
