@@ -17,7 +17,7 @@ builder.Services.AddCors(options =>
             .WithOrigins(
                 "http://localhost:5173",      // Vite dev server
                 "http://localhost:3000",      // Alternative dev port
-                "https://emailautomation.vercel.app" // Production frontend
+                "https://email-automation-livid.vercel.app" // Production frontend
             )
             .AllowAnyMethod()
             .AllowAnyHeader();
